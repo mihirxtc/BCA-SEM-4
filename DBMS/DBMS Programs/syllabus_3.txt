@@ -1,0 +1,57 @@
+create table emp1
+(
+emp_no number(3) primary key,
+emp_name varchar2(15),
+destination varchar2(20),
+mgr_no number(3),
+hiredate date,
+salary number(4),
+commision number(3),
+dept_no references dept1(dept_no)
+);
+
+create table dept1
+(
+dept_no number(2) primary key,
+dept_name varchar2(15),
+location varchar2(25)
+);
+
+insert all
+into dept1 values(1,'bba','vastrapur')
+into dept1 values(2,'bca','sarkhej')
+into dept1 values(3,'mba','gandhinagar')
+select * from dual;
+
+
+insert all
+into emp1 values(1,'krunal','vatva',12,'10-jan-1999',1000,100,1)
+into emp1 values(2,'dhruvin','ranip',23,'11-feb-2000',2000,200,2)
+into emp1 values(3,'yashshvi','khadia',34,'10-jul-2001',3000,300,3)
+into emp1 values(4,'vikas','vatva',45,'10-jan-2002',4000,400,1)
+into emp1 values(5,'dhruvil','maninagar',56,'10-jan-2003',4000,400,2)
+into emp1 values(6,'muskan','shahibaug',67,'1-jan-2004',5000,500,3)
+select * from dual;
+
+select *from emp1;
+
+select *from dept1;
+
+query1:
+
+select dept_no "Department NO", count(emp_no) "No Of Employee" from emp1 group by dept_no; 
+
+query 2:
+
+select * from emp1 where salary > (select avg(salary) from emp1 );
+//to find the avg salary
+select avg(salary) from emp1 group by dept_no;
+
+query 3:
+
+select dept_no,sum(salary) from emp1 where salary>2000 group by dept_no; 
+
+query 4:
+
+create view v as select * from dept1 where dept_no=1;
+select *from v;

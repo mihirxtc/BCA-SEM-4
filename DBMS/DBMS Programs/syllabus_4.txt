@@ -1,0 +1,48 @@
+create table per
+(
+pid number(5) primary key,
+lname varchar2(10),
+fname varchar2(10),
+address varchar2(10),
+city varchar2(10)
+)
+create table order1
+(
+oid number(5)primary key,
+ono number(5),
+pid number(5),
+oprice number(10),
+foreign key (pid) references per(pid)
+)
+
+
+insert all
+into per values(1,'vhora','muskan','vatva','USA')
+into per values(2,'chauhan','mansi','ghikanta','Norway')
+into per values(3,'patel','juhi','viratnagar','ahemdabad')
+into per values(4,'sharma','yashu','raipur','USA')
+into per values(5,'xxx','vvv','yyy','Norway')
+select * from dual
+
+insert all
+into order1 values(1,212,3,3000)
+into order1 values(2,323,5,2000)
+into order1 values(3,989,2,4000)
+into order1 values(4,343,1,6000)
+into order1 values(5,676,4,7000)
+select * from dual
+
+select lname,fname,city from per where city like 'Norway' or city like 'USA'
+
+select * from per where address is null
+
+alter table per drop column month
+update order1 set month='12-nov-09' where pid=1
+update order1 set month='14-jan-07' where pid=2
+update order1 set month='23-nov-02' where pid=3
+update order1 set month='1-mar-06' where pid=4
+update order1 set month='18-feb-01' where pid=5
+select *from order1
+
+select lname,fname,month from per,order1 where per.pid=order1.pid and to_char(month,'mon')='nov';
+select lname,fname,month from per,order1 where per.pid=order1.pid and month like '%NOV%';

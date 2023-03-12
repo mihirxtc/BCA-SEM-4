@@ -1,0 +1,54 @@
+
+create table cust
+( 
+ cid number(10) primary key,
+ cname varchar2(20) not null,
+ ccity varchar2(20),
+ dob date unique
+);
+
+create table prod
+(
+ pid number(10) primary key,
+ pname varchar2(20) not null,
+ pcost number(10),  
+ pprofit number(10) 
+); 
+
+create table sale_detail
+(
+ cid number(10) references cust(cid),
+ pid number(10) references prod(pid),
+ sale number(10),
+ sale_date date unique
+);
+
+insert all
+into cust values(1,'umang','ahmedabad','6-may-2000')
+into cust values(2,'sumit','jamnagar','10-jan-1985')
+into cust values(3,'dhruvin','rajkot','25-sep-1995')
+into cust values(4,'parth','surat','29-jul-1999')
+into cust values(5,'mayur','ahmedabad','15-mar-1990')
+select * from dual;
+
+insert all
+into prod values(1,'sofa',50000,5000)
+into prod values(2,'lcd',70000,8000)
+into prod values(3,'phone',30000,4000)
+into prod values(4,'laptop',45000,3000)
+into prod values(5,'ac',80000,10000)
+select * from dual;
+
+insert all
+into sale_detail values(1,1,20000,'7-mar-1998')
+into sale_detail values(2,3,50000,'25-dec-1985')
+into sale_detail values(3,2,15000,'15-feb-1995')
+into sale_detail values(4,5,40000,'20-jun-1990')
+into sale_detail values(5,4,30000,'29-aug-2000')
+select * from dual;
+
+Query:-
+1..select * from cust  where to_char(dob,'yyyy')='1985'
+2..select c.cname "Customer Name",c.ccity "city",c.dob "Date Of Birth",s.sale,s.sale_date from sale_detail s inner join cust c on c.cid=s.cid order by sale_date
+3..select pname "Product Name" from prod where pname like 's%'
+4..select * from(select pid,sum(sale) from sale_detail group by pid order by 2 desc) a,prod b where b.pid=a.pid and rownum=1

@@ -1,0 +1,26 @@
+create table department
+(dept_no int primary key,
+dept_name varchar2(50)not null,
+location varchar2(50)not null
+);
+
+create table employee
+(
+emp_no int primary key,  
+emp_name varchar(50) not null,
+job varchar(50) not null check(job in('MD','Salesman','Accountant')),
+join_dt date not null,
+dept_no int references department(dept_no),
+salary int not nullinsert all
+into department values(2001,'Headoffice','New Delhi')
+into department values(2890,'Research','Noida')
+into department values(3650,'Sales and Service','Ahmedabad')
+into department values(3700,'Sales and Service','Palanpur')
+into employee values(5001,'Ketal Patel','MD','6-Jun-1996',2001,78500)
+into employee values(5002,'Gopinath mishra','Salesman','18-Aug-1976',2001,23000)
+into employee values(5067,'Koyal Mehra','Accountant','19-Feb-1995',3650,18700)
+into employee values(6800,'Manish Chowksi','Accountant','6-Jun-1993',3700,14900)
+into employee values(6890,'Manish Dave','Salesman','21-Mar-2001',3700,8999)
+select *from dual;
+)
+

@@ -1,0 +1,116 @@
+1.
+select *from customer;
+
+2.
+select Account_no , Acc_Type, Current_Banalce from Account
+
+3.
+select bname from branch where branch_no=1
+
+4.
+select *from customer where gender='M'
+
+5.
+cancel
+
+6. 
+select distinct (acc_type) from account;
+
+7.
+select c.cname, a.acc_type from customer c,account a where c.customer_no=a.customer_no
+
+
+8.
+select customer_no from customer minus select customer_no from account
+
+9.// not working
+select c.cname, a.acc_type,count(c.customer_no) from customer c,account a where c.customer_no=a.customer_no group by c.customer_no
+
+10.
+select a.acc_type "Account Type",c.customer_no "Customer No",c.cname "Customer Name" from customer c inner join account a on c.customer_no=a.customer_no where acc_type='SB'
+
+11.
+select * from account where to_char(open_date,'yyyy')='1999'
+
+12.
+select * from account where current_banalce>4000
+
+13 and 14 is not
+
+15.
+select bname from branch where branch_no=1 or branch_no=3
+ 
+16.
+select bname from branch where branch_no=1 or branch_no=3
+ 
+17.
+select * from account order by account_no desc
+
+18.
+select c.customer_no,c.cname,a.account_no,a.acc_type,a.branch_no,a.customer_no,a.open_date,a.current_banalce from account a inner join 
+customer c on a.customer_no=c.customer_no where to_char(open_date,'yyyy')<>2000
+
+19.
+select * from customer where cname like '%Patel'
+
+20.
+select * from account where account_no<106
+
+21.
+update account set current_banalce = current_banalce-1500 where account_no=105;
+
+22.
+update account set current_banalce=current_banalce+500 where branch_no=2
+
+23.
+update account set current_banalce=current_banalce+500 where to_char(open_date,'mon')='jan'
+
+24.
+update customer set city='gandhinager' where contactno like '2%'
+
+25.
+delete from account where to_char(open_date,'mon-yyyy')>'feb-2001'
+
+26.
+delete from account where current_banalce<5000
+
+27.
+delete from account where branch_no=3;
+
+28 is not 
+
+29.
+for finding age=
+select customer_no,cname,ceil((to_date('21-feb-2019','dd-mon-yyyy')-brith_date)/365) "Age" from customer
+//not working:
+delete from customer where Age>30
+
+30.
+
+31.//not working
+delete from customer where city='Pune'
+
+32.
+delete from branch
+
+33.
+alter table account add status char(1)
+
+34.
+alter table customer modify city varchar2(50) 
+
+35.
+alter table customer drop column contact_no
+=>(if you have not column then first add then drop)
+alter table customer add contact_no number(15)
+
+36.
+qury of this
+
+37.
+qury of this in rename
+
+38.
+drop table account
+
+=======================================quries in table(7,9,29,(5 is not in prillim exam),36)=====================

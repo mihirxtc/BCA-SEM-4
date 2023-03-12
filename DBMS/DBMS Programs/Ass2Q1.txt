@@ -1,0 +1,28 @@
+create table worker_master
+(
+workerid int primary key check (workerid>200),
+wnamea varchar2(50) not null,
+payperhour int not null check (payperhour between 500 and 1500),
+Specialization varchar2(250) not null check (Specialization in('Marketing','Account','Finance'))
+);
+
+
+create table worker_detail
+(
+workerid int primary key references worker_master(workerid),
+job varchar(20) not null,
+doj date not null,
+fixsalary int not null,
+overtime_charges int
+)
+
+
+insert all
+into worker_master values(202,'Kiran Morre',1440,'Account')
+into worker_master values(203,'Jaykiran Achharya',1220,'Marketing')
+into worker_master values(204,'Sankalp Patel',720,'Finance')
+into worker_master values(205,'Riddhi Vyas',1200,'Finance')
+into worker_detail values(201,'Manager''02-Mar-1991',45000,5600)
+into worker_detail values(202,'Clerk''17-Aug-1992',38450,2400)
+into worker_detail values(205,'Clerk','22-Feb-1994',18300,4200)
+into worker_detail values(204,'Analyst','19-May-1994',12200,3330)

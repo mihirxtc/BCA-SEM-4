@@ -1,0 +1,32 @@
+create table kindergarden
+(
+kinderid int primary key,
+kindername varchar(20) not null,
+mainbranch varchar(20) not null,
+subbranch varchar(20) not null,
+city varchar(20) not null
+)
+
+create table kindergardendetail
+(
+kgid int primary key,
+kinderid int references kindergarden (kinderid),
+class varchar(20) not null check (class in('PG','NUR','Jr.Kg','Sr.Kg')),
+noofdiv int not null check (noofdiv between 1 and 5),
+capacity int not null,
+description varchar(50)
+)
+
+insert all
+into kindergarden values(1,'Kidzee','Navrangpura','Navrangpura','Ahmedabad')
+into kindergarden values(2,'Kidzee','Navrangpura','Ambawadi','Ahmedabad')
+into kindergarden values(3,'Eurokids','Borivali','Borivali','Mumbai')
+into kindergarden values(4,'Eurokids','Borivali','Povai','Mumbai')
+into kindergarden values(5,'Treehouse','Alkapuri','Central','Baroda')
+into kindergardendetail values(1,1,'PG',2,15,'Playgroup')
+into kindergardendetail values(2,1,'PG',2,15,'Playgroup')
+into kindergardendetail values(3,2,'PG',2,10,'Playgroup')
+into kindergardendetail values(4,4,'NUR',4,25,'Nursery')
+into kindergardendetail values(5,5,'Jr.Kg',4,40,'JuniorKG')
+
+select *from dual;

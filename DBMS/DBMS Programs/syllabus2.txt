@@ -1,0 +1,60 @@
+create table branch_master
+(
+ b_no number(2) primary key,
+ b_name varchar2(25) not null,
+ Location varchar2(25)
+);
+
+create table C_master
+(
+ c_no number(2) primary key,
+ c_name varchar2(25),
+ gender varchar2(7) check(gender in('female','male')),
+ dob date unique,
+ city varchar2(20),
+ contact_no number(10)
+);
+
+
+
+ create table A_master
+(
+  a_no number(12) primary key,
+  a_type varchar2(10),
+  b_no number(2) references branch_master(b_no),
+  c_no number(2) references C_master(c_no),
+  open_date date unique,
+  cur_balance number(5)
+);
+
+insert all
+into branch_master values(1,'axis','vastrapur')
+into branch_master values(2,'BOB','khadia')
+into branch_master values(3,'BOI','lal darwaja')
+select * from dual;
+
+insert all
+into C_master values(1,'krunal','male','21-sep-1998','Ahmedabad',12345)
+into C_master values(2,'dhruvin','male','23-jun-1999','Vadodra',46789)
+into C_master values(3,'chandi','female','1-apr-2000','Ahmedabad',56789)
+select * from dual;
+
+insert all
+into A_master values(12345656,'Saving',1,1,'22-jan-1999',30000)
+into A_master values(12345655,'Current',2,2,'23-jul-2010',20000)
+into A_master values(12345654,'Saving',3,3,'22-apr-2002',10000)
+select * from dual;
+
+select *from branch_master;
+select *from C_master;
+select * from A_master;
+
+
+QUAREY:-
+
+
+
+1..select *from C_master where gender='male';
+2..select *from A_master where to_char(open_date,'yyyy')='1999';
+3..select * from A_master where cur_balance>20000;
+4..select b_name from branch_master where b_no=1 or b_no=3; 
